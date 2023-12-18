@@ -13,3 +13,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0px;
+}
+
+ul,
+ol {
+  margin: 0px;
+}
+
+select {
+  appearance: none;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+p {
+  color: #484848;
+}
+
+h2 {
+  font-size: 24px;
+
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 18px;
+}
