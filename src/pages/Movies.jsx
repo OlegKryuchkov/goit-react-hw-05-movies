@@ -8,12 +8,15 @@ import {
 } from 'components/SharedLayout/SharedLayout.styled';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { fetchSerchMovies } from 'services/api';
+import { fetchSearchMovies } from 'services/api';
 
 const Movies = () => {
+  const [value, setValue] = useState('');
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleChange = e => setValue(e.currentTarget.value);
 
   const query = searchParams.get('query');
 
@@ -22,7 +25,7 @@ const Movies = () => {
     const details = async () => {
       setLoading(true);
       try {
-        const { results } = await fetchSerchMovies(query);
+        const { results } = await fetchSearchMovies(query);
         setMovies(results);
       } catch (error) {
         console.log(error.message);
@@ -35,7 +38,8 @@ const Movies = () => {
 
   const nextParams = query !== '' ? { query } : {};
 
-  const handleSubmit = value => {
+  const handleSubmit = e => {
+    e.preventDefault();
     setSearchParams({ query: value });
   };
 
@@ -49,6 +53,7 @@ const Movies = () => {
               <Input
                 type="text"
                 name="query"
+                onChange={handleChange}
                 placeholder="Search Movies"
                 required
               />
